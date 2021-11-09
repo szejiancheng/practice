@@ -279,9 +279,22 @@ function binary_search(A, v) {
 
 
 
+function safe_paths(grid){
+    const max_r = length(grid)-1;
+    const max_c = length(head(grid))-1;
 
-
-
+    function path_finder(row, col){
+        if (row === max_r && col === max_c){
+            return 1;
+        }
+        else if (row>max_r||col>max_c||list_ref(list_ref(grid, row), col)>0){
+            return 0;
+        }else{
+            return path_finder(row+1, col) + path_finder(row, col+1);
+        }
+    }
+    return path_finder(0,0);
+}
 
 
 
